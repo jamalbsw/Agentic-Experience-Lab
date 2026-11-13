@@ -9,6 +9,7 @@ The site is password protected. Ask the onboarding contact for the team password
 ## What's in this repository
 
 - `public/index.html` the password gate. The guide inside it is compressed and encrypted (AES-256-GCM, key derived from the password with PBKDF2-SHA256, 600,000 iterations).
+- The page also includes a client-side password prompt for the pilot link; it is not server-enforced access control.
 - `public/.nojekyll` tells GitHub Pages to serve files as they are.
 - `.github/workflows/pages.yml` deploys `public/` to GitHub Pages on every push to `main`.
 
