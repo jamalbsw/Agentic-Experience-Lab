@@ -1,8 +1,8 @@
-# AXD Lab
+# AXD Studio
 
 A step-by-step learning path for designers new to agentic experience design. Static site, no build step, hosted on GitHub Pages.
 
-**[Open the AXD Lab site](https://jamalbsw.github.io/Agentic-Experience-Lab/)**
+**[Open the AXD Studio site](https://jamalbsw.github.io/Agentic-Experience-Lab/)**
 
 The site is password protected. Ask the onboarding contact for the team password. It is never stored in this repository.
 
