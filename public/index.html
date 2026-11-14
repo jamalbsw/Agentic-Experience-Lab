@@ -40,8 +40,9 @@ button { min-height: 48px; padding: 12px 18px; border: 1px solid #168AB9; border
 button:hover { transform: translateY(-1px); background: #0A8EC5; }
 button:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; }
 button[disabled] { opacity: .6; cursor: progress; }
-#open-pilot { width: 100%; margin-top: 12px; background: transparent; }
-#open-pilot:hover { background: rgba(0,126,180,.2); }
+#launch-pilot { display: block; width: 100%; margin-top: 12px; padding: 12px 18px; border: 1px solid #168AB9; border-radius: 10px; background: transparent; color: #fff; font: 600 .92rem "Red Hat Text", "Segoe UI", system-ui, sans-serif; text-align: center; text-decoration: none; transition: background-color .16s, transform .16s; }
+#launch-pilot:hover { transform: translateY(-1px); background: rgba(0,126,180,.2); }
+#launch-pilot:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; }
 .err { min-height: 1.2em; color: #FFB4AB; font-size: .82rem; line-height: 1.45; }
 @media (max-width: 760px) { .shell { max-width: 600px; grid-template-columns: 1fr; gap: 36px; align-content: center; } .brand { margin-bottom: 42px; } .welcome h1 { max-width: 13ch; font-size: clamp(2.5rem, 12vw, 4rem); } .lede { margin-top: 16px; } .card-top { margin-bottom: 28px; } }
 @media (max-width: 420px) { .shell { padding-top: 28px; padding-bottom: 28px; gap: 28px; } .brand { margin-bottom: 34px; } .card { padding: 22px; border-radius: 18px; } .private { font-size: .53rem; } }
@@ -66,7 +67,7 @@ button[disabled] { opacity: .6; cursor: progress; }
       <button id="go" type="submit">Enter AXD Studio</button>
       <p class="err" id="err" role="alert"></p>
     </form>
-    <button id="open-pilot" type="button">Open Pilot</button>
+    <a id="launch-pilot" href="https://jamalbsw.github.io/intelligent-workspace/">Launch Pilot</a>
   </section>
 </main>
 <script>
@@ -107,21 +108,6 @@ button[disabled] { opacity: .6; cursor: progress; }
       try { localStorage.removeItem(K); } catch (x) {}
       btn.disabled = false; btn.textContent = "Enter AXD Studio";
       err.textContent = "That password did not work. Try again or contact your Studio administrator.";
-    }
-  });
-  document.getElementById("open-pilot").addEventListener("click", async function () {
-    var password = window.prompt("Enter the pilot password");
-    if (password === null) return;
-    try {
-      var digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(password));
-      var verifier = Array.from(new Uint8Array(digest), function (b) { return b.toString(16).padStart(2, "0"); }).join("");
-      if (verifier === "b742dbd85f476ba78151f62224eeff1ed0dca9f05160dbfeb76e54c47dfd340a") {
-        window.location.href = "https://jamalbsw.github.io/intelligent-workspace/";
-      } else {
-        window.alert("That password did not work. Try again.");
-      }
-    } catch (e) {
-      window.alert("The pilot password could not be verified in this browser.");
     }
   });
   tryRemembered();
